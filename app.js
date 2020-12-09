@@ -82,3 +82,41 @@ function gpbubble(id) {
 })}
 
 gpbubble();
+
+
+//----------------------------GAUGE CHART---------------------------------------//
+
+function gpGauge(id) {
+  d3.json("samples.json").then((data) =>{
+    //console.log(data)
+    var ids = data.samples[0].otu_ids
+    //console.log(ids)
+    //cut the data into the top 10. Graph should only show top 10 in reverse order
+    var sampleValues =  data.samples[0].sample_values.slice(0,10).reverse();
+    //console.log(sampleValues)
+    var data_labels =  data.samples[0].otu_labels;
+    //console.log(data_labels)
+    var OTU_topTen = (data.samples[0].otu_ids).reverse();
+    //console.log(OTU_topTen)
+    var OTU_id = OTU_topTen.map(d => "OTU " + d);
+    //console.log(OTU_id)
+    var labels =  data.samples[0].otu_labels;
+    //console.log(labels)
+    console.log(`OTU IDS: ${OTU_id}`)
+    console.log(`OTU_labels: ${labels}`)
+    //var wfreq = data[0].wfreq
+
+    var trace2 = {
+        domain: { x: [0, 1], y: [0, 1]},
+        value: wfreq,
+        type: "indicator",
+        mode: "gauge+number",
+        gauge: {
+            axis: { range: [null, 9] },
+        }
+      }
+      Plotly.newPlot(gauge, data);
+
+})}
+
+gpGauge();
