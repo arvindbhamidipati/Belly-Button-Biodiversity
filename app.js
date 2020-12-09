@@ -74,13 +74,10 @@ function gpbubble(id) {
         // set the layout for the bubble plot
         var layout_2 = {
             xaxis:{title: "OTU ID"},
-
         };
 
-        // creating data variable
         var data1 = [trace1];
 
-    // create the bubble plot
     Plotly.newPlot("bubble", data1, layout_2);
 })}
 
